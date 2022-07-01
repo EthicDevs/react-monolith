@@ -1,23 +1,16 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
+    "target": "es2018",
     "module": "commonjs",
-    "lib": ["es2020"],
-    "declaration": true,
     "jsx": "react",
+    "lib": ["dom"],
+    "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "typeRoots": ["node_modules/@types"],
     "paths": {
-      "*": ["types/*"],
-      "lib/*": ["src/*"]
+      "*": ["types/*"]
     },
-
-    // Makes code working with es5 without scarifying on files size
-    // (needs "tslib" installed in the project importing this lib, see peerDependencies)
-    "importHelpers": true,
-    "downlevelIteration": true,
 
     // Strict Type-Checking Options
     "strict": true,
@@ -29,26 +22,17 @@
     "alwaysStrict": true,
 
     // Additional Checks
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-
-    // Additional Features
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "skipLibCheck": true,
 
     // Experimental Options
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "exclude": [
-    "./.git",
-    "./example",
-    "./dist",
-    "./docs",
-    "./node_modules",
-    "./src/**/*.test.ts",
-    "**/node_modules/**"
-  ]
+  "exclude": ["./src/**/*.test.ts", "./dist", "./node_modules", "./example"]
 }

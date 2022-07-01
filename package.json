@@ -1,10 +1,10 @@
 {
-  "name": "@ethicdevs/typescript-library-starter",
+  "name": "@ethicdevs/react-monolith",
   "version": "0.1.0",
-  "description": "Template repository for TypeScript libraries",
+  "description": "React SSR + CSI using the Islands pattern for the ultimate A11Y/SEO solution!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": {
     "name": "EthicDevs",
     "email": "contact@ethicdevs.com",
@@ -12,12 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethicdevs/typescript-library-starter"
+    "url": "https://github.com/EthicDevs/react-monolith"
   },
   "keywords": [
+    "react",
     "typescript",
-    "library",
-    "template"
+    "mvc",
+    "ssr",
+    "csr",
+    "monolith",
+    "islands"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,7 +29,7 @@
   "scripts": {
     "build:clean": "rm -rf ./dist",
     "build:ts": "tsc",
-    "build": "run-s build:clean build:ts",
+    "build": "date && run-s build:clean build:ts",
     "ci": "run-s test build",
     "dev": "nodemon -w .env -w .env.local -w . -x 'run-s typecheck start:dev'",
     "start": "NODE_ENV=production node ./dist/index.js",
@@ -34,10 +38,16 @@
     "test:watch": "jest --verbose --watch",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "deepest-merge": "^1.0.0"
+  },
   "devDependencies": {
+    "@ethicdevs/fastify-stream-react-views": "file:./../fastify-stream-react-views",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "fastify": "^3.27.4",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
@@ -47,7 +57,14 @@
     "typescript": "^4.6.2"
   },
   "peerDependencies": {
-    "tslib": ">=2.4.0"
+    "@ethicdevs/fastify-stream-react-views": ">=0.7.0",
+    "fastify": ">=3.27.4",
+    "tslib": ">=2.4.0",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "optionalDependencies": {
+    "styled-components": ">=5.3.5"
   },
   "jest": {
     "preset": "ts-jest/presets/js-with-ts",
