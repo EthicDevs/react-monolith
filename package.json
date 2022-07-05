@@ -39,10 +39,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "deepest-merge": "^1.0.0"
+    "deepest-merge": "^1.0.0",
+    "react-ssr-prepass": "^1.5.0"
   },
   "devDependencies": {
-    "@ethicdevs/fastify-stream-react-views": "file:./../fastify-stream-react-views",
+    "@ethicdevs/fastify-stream-react-views": "^0.8.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.43",

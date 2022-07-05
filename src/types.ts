@@ -2,7 +2,14 @@
 import { IncomingMessage, Server, ServerResponse } from "node:http";
 
 // 3rd-party
-import type { FastifyInstance, FastifyLoggerInstance } from "fastify";
+import type {
+  FastifyInstance,
+  FastifyLoggerInstance,
+  HTTPMethods,
+  RouteHandlerMethod,
+} from "fastify";
+import { ComponentType, VFC } from "react";
+import { ReactView } from "@ethicdevs/fastify-stream-react-views";
 
 // lib
 export type Required<T> = {
@@ -10,6 +17,16 @@ export type Required<T> = {
 };
 
 export type Env = "production" | "development" | "test";
+
+export type ReqPath = string;
+
+export type ReqHandler = RouteHandlerMethod;
+
+export type ReqOpts = { [x: string]: unknown };
+
+export type IRoute =
+  | [HTTPMethods, ReqPath, ReqHandler]
+  | [HTTPMethods, ReqPath, ReqHandler, ReqOpts];
 
 export interface AppServerA11YConfig {
   localeDirection: "ltr" | "rtl";
@@ -29,6 +46,7 @@ export interface AppServerPaths {
   distFolder: string;
   islandsFolder: string;
   rootFolder: string;
+  routesFile: string;
   viewsFolder: string;
 }
 
@@ -83,4 +101,57 @@ export type AppServer = FastifyInstance<
     $port: number;
     $config: AppServerConfig;
   };
+};
+
+export type AppRouter = () => JSX.Element;
+
+export type AppRouterGroupType = "default" | "api";
+export enum AppRouterGroup {
+  DEFAULT = "default",
+  API = "api",
+}
+
+export interface AppRoute {
+  type?: AppRouterGroup.DEFAULT;
+  exact?: boolean;
+  path: string;
+  view: ReactView<any>;
+}
+
+export interface ApiRoute {
+  type?: AppRouterGroup.API;
+  method?: HTTPMethods;
+  path: string;
+  handler: ReqHandler;
+}
+
+export type AppRouterRouteGroup<T extends AppRouterGroupType = AppRouterGroup> =
+  VFC<{
+    children:
+      | React.ReactElement<any, AppRouterRoute<T>>
+      | Array<React.ReactElement<any, AppRouterRoute<T>>>;
+    type: T;
+  }>;
+
+export type AppRouterRoute<T extends AppRouterGroupType = AppRouterGroup> = VFC<
+  T extends "default" ? AppRoute : ApiRoute
+>;
+
+export type AppRouterRoot = VFC<{
+  children: [
+    React.ReactElement<{ type: "api" }, AppRouterRouteGroup<"api">>,
+    React.ReactElement<{ type: "default" }, AppRouterRouteGroup<"default">>,
+  ];
+}>;
+
+export interface RouterElements {
+  Root: AppRouterRoot;
+  Group: AppRouterRouteGroup;
+  Route: AppRouterRoute;
+}
+
+export type SSRPrepassComponentType<P = {}> = ComponentType & {
+  type: string;
+  key: string;
+  props: P;
 };

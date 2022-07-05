@@ -15,6 +15,14 @@ export type {
 
 /* Types */
 export type {
+  ApiRoute,
+  AppRoute,
+  AppRouterGroup,
+  AppRouterGroupType,
+  AppRouterRoot,
+  AppRouterRoute,
+  AppRouterRouteGroup,
+  AppRouter,
   AppServer,
   AppServerA11YConfig,
   AppServerConfig,
@@ -25,14 +33,22 @@ export type {
   AppServerSpecialComponents,
   // helper types
   Env,
+  IRoute,
   Required,
+  ReqHandler,
+  ReqOpts,
+  ReqPath,
 } from "./types";
 
 /* Constants */
 export { DEFAULT_APP_SERVER_CONFIG } from "./core";
 
 /* Components */
-export { DefaultAppComponent, DefaultErrorsBoundary } from "./components";
+export {
+  DefaultAppComponent,
+  DefaultErrorsBoundary,
+  Router,
+} from "./components";
 
 /* Functions */
 export { makeAppServer, startAppServer, stopAppServerAndExit } from "./core";
