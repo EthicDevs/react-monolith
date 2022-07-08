@@ -18,9 +18,13 @@ $ npm i @ethicdevs/react-monolith
 
 ## Usage
 
-- [Get started with react-monolith]() by following an interactive course, for free!
+TODO: Write documentation, unless done; here is some example code:
 
-## Configuration
+- [react-monolith-samples](https://github.com/EthicDevs/react-monolith-sample)
+
+<!--
+- [Get started with react-monolith]() by following an interactive course, for free!
+-->
 
 ## License
 
