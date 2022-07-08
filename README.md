@@ -20,7 +20,7 @@ $ npm i @ethicdevs/react-monolith
 
 TODO: Write documentation, unless done; here is some example code:
 
-- [react-monolith-samples](https://github.com/EthicDevs/react-monolith-sample)
+- [react-monolith-samples](https://github.com/EthicDevs/react-monolith-samples)
 
 <!--
 - [Get started with react-monolith]() by following an interactive course, for free!
