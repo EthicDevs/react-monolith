@@ -127,14 +127,14 @@ export default async function makeAppServer(
   const router = await import(config.paths.routesFile);
   const SSRAppRouter: AppRouter = router.default;
 
-  let appRouterRoot: null | (AppRouterRoot & SSRPrepassComponentType) = null;
+  // let appRouterRoot: null | (AppRouterRoot & SSRPrepassComponentType) = null;
   let apiRoutes: ApiRoute[] = [];
   let appRoutes: AppRoute[] = [];
 
   await ssrPrepass(<SSRAppRouter />, (element) => {
     const el = element as unknown as SSRPrepassComponentType;
     if (isAppRouterRoot(el)) {
-      appRouterRoot = el as AppRouterRoot & SSRPrepassComponentType;
+      // appRouterRoot = el;
     } else if (isAppRouterApiRoute(el)) {
       apiRoutes.push({
         method: el.props.method || "GET",
