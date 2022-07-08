@@ -12,7 +12,7 @@ import type {
   ApiRoute,
   AppRoute,
   AppRouter,
-  AppRouterRoot,
+  // AppRouterRoot,
   AppServer,
   AppServerConfig,
   AppServerOptions,

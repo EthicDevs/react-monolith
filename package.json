@@ -1,6 +1,6 @@
 {
   "name": "@ethicdevs/react-monolith",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "React SSR + CSI using the Islands pattern for the ultimate A11Y/SEO solution!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
