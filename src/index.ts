@@ -17,7 +17,6 @@ export type {
 export type {
   ApiRoute,
   AppRoute,
-  AppRouterGroup,
   AppRouterGroupType,
   AppRouterRoot,
   AppRouterRoute,
@@ -39,6 +38,9 @@ export type {
   ReqOpts,
   ReqPath,
 } from "./types";
+
+/* Enums */
+export { AppRouterGroup } from "./types";
 
 /* Constants */
 export { DEFAULT_APP_SERVER_CONFIG } from "./core";
