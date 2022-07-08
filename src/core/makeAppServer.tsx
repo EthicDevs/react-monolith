@@ -1,5 +1,6 @@
 // 1st-party
 import FastifyStreamReactViews from "@ethicdevs/fastify-stream-react-views";
+import { InternalViewKind } from "@ethicdevs/fastify-stream-react-views";
 // 3rd-party
 import Fastify from "fastify";
 import React from "react";
@@ -113,18 +114,13 @@ export default async function makeAppServer(
   });
 
   server.setErrorHandler((error, _, reply) => {
-    return reply.streamReactView("internal-error", { error });
-    /*return handleRequestWithView<InternalErrorViewProps>(
-      "internal-error",
-      request,
-      reply,
-      { error }
-    );*/
+    return reply.streamReactView(InternalViewKind.INTERNAL_ERROR_VIEW, {
+      error,
+    });
   });
 
   server.setNotFoundHandler((_, reply) => {
-    return reply.streamReactView("not-found");
-    // return handleRequestWithView("not-found", request, reply);
+    return reply.streamReactView(InternalViewKind.NOT_FOUND_ERROR_VIEW);
   });
 
   // Register routes
@@ -153,10 +149,6 @@ export default async function makeAppServer(
     }
     return undefined;
   });
-
-  console.log("appRouterRoot:", appRouterRoot);
-  console.log("apiRoutes:", apiRoutes);
-  console.log("appRoutes:", appRoutes);
 
   // Register API routes
   apiRoutes.forEach((route) => {
