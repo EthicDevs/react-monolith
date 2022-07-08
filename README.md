@@ -2,9 +2,6 @@
 
 [![NPM](https://img.shields.io/npm/v/@ethicdevs/react-monolith?color=red)](https://www.npmjs.com/@ethicdevs/react-monolith)
 [![MIT License](https://img.shields.io/github/license/ethicdevs/react-monolith.svg?color=blue)](https://github.com/ethicdevs/react-monolith/blob/master/LICENSE)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ethicdevs/react-monolith)](https://dependabot.com)
-[![Average issue resolution time](https://isitmaintained.com/badge/resolution/ethicdevs/react-monolith.svg)](https://isitmaintained.com/project/ethicdevs/react-monolith)
-[![Number of open issues](https://isitmaintained.com/badge/open/ethicdevs/react-monolith.svg)](https://isitmaintained.com/project/ethicdevs/react-monolith)
 
 ⚡️ React SSR + CSI using the Islands pattern for the ultimate A11Y/SEO solution!
 
