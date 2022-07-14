@@ -38,11 +38,7 @@ export const DEFAULT_APP_SERVER_CONFIG: AppServerConfig = {
   ],
   commonProps: {},
   env: process.env.NODE_ENV === "production" ? "production" : "development",
-  externalDependencies: {
-    ["react"]: "React",
-    "react-dom": "ReactDOM",
-    "styled-components": "styled",
-  },
+  externalDependencies: {},
   featureFlags: {
     withDevServer: false,
     withStyledSSR: false,
