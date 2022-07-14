@@ -39,8 +39,6 @@ export const DEFAULT_APP_SERVER_CONFIG: AppServerConfig = {
   commonProps: {},
   env: process.env.NODE_ENV === "production" ? "production" : "development",
   externalDependencies: {
-    "@ethicdevs/fastify-stream-react-views": "fastifyStreamReactViews",
-    "markdown-to-jsx": "MarkdownToJSX",
     ["react"]: "React",
     "react-dom": "ReactDOM",
     "styled-components": "styled",
