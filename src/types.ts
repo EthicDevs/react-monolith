@@ -2,14 +2,18 @@
 import { IncomingMessage, Server, ServerResponse } from "node:http";
 
 // 3rd-party
+import type { ComponentType, VFC } from "react";
 import type {
   FastifyInstance,
   FastifyLoggerInstance,
   HTTPMethods,
   RouteHandlerMethod,
 } from "fastify";
-import { ComponentType, VFC } from "react";
-import { ReactView } from "@ethicdevs/fastify-stream-react-views";
+import type {
+  CommonPropsBase,
+  HeadTag,
+  ReactView,
+} from "@ethicdevs/fastify-stream-react-views";
 
 // lib
 export type Required<T> = {
@@ -68,24 +72,37 @@ export interface AppServerOptions {
   a11y?: Partial<AppServerA11YConfig>;
   appName: string;
   appVersion: string;
+  baseHeadTags?: HeadTag[];
+  commonProps?: CommonPropsBase;
   env: Env;
+  externalDependencies?: Record<string, string>;
   featureFlags?: Partial<AppServerFeatureFlags>;
   logger?: AppServerLoggerConfig;
   paths: AppServerPaths;
   specialComponents?: Partial<AppServerSpecialComponents>;
+  titleSeparatorChar?: string;
 }
 
 // Same thing as AppServerOptions but with all properties required
 export type AppServerConfig = Required<
   Omit<
     AppServerOptions,
-    "a11y" | "featureFlags" | "logger" | "specialComponents"
+    | "a11y"
+    | "baseHeadTags"
+    | "commonProps"
+    | "featureFlags"
+    | "logger"
+    | "specialComponents"
+    | "titleSeparatorChar"
   > & {
     a11y: Required<AppServerA11YConfig>;
+    baseHeadTags: HeadTag[];
+    commonProps: CommonPropsBase;
     env: Env;
     featureFlags: Required<AppServerFeatureFlags>;
     logger: Required<AppServerLoggerConfig>;
     specialComponents: Required<AppServerSpecialComponents>;
+    titleSeparatorChar: string;
   }
 >;
 

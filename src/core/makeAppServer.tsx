@@ -12,7 +12,6 @@ import type {
   ApiRoute,
   AppRoute,
   AppRouter,
-  // AppRouterRoot,
   AppServer,
   AppServerConfig,
   AppServerOptions,
@@ -24,11 +23,7 @@ import {
   UNSET_CONFIG_TAG,
 } from "./DefaultAppServerConfig";
 
-import {
-  isAppRouterApiRoute,
-  isAppRouterAppRoute,
-  isAppRouterRoot,
-} from "../helpers";
+import { isAppRouterApiRoute, isAppRouterAppRoute } from "../helpers";
 
 export default async function makeAppServer(
   host: string,
@@ -76,7 +71,8 @@ export default async function makeAppServer(
   server.register(FastifyStreamReactViews, {
     appComponent: specialComponents.AppComponent,
     appName: config.appName,
-    titleSeparatorChar: "∙",
+    commonProps: config.commonProps,
+    titleSeparatorChar: config.titleSeparatorChar,
     rootFolder: config.paths.rootFolder,
     distFolder: config.paths.distFolder,
     islandsFolder: config.paths.islandsFolder,
@@ -85,30 +81,7 @@ export default async function makeAppServer(
       html: {
         dir: config.a11y.localeDirection,
       },
-      head: [
-        // config.metas.charset
-        { kind: "meta", charset: "utf-8" },
-        {
-          // config.metas.robots.allowIndexFollow === true
-          kind: "meta",
-          name: "robots",
-          content:
-            "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-        },
-        {
-          // config.metas.responsive === true
-          kind: "meta",
-          name: "viewport",
-          content: "width=device-width, initial-scale=1",
-        },
-        {
-          // config.metas.favicon === true || type('string') => .href
-          kind: "link",
-          rel: "icon",
-          type: "image/x-icon",
-          href: "/public/favicon.ico",
-        },
-      ],
+      head: config.baseHeadTags,
     },
     withStyledSSR: config.featureFlags.withStyledSSR,
   });
@@ -127,17 +100,14 @@ export default async function makeAppServer(
   const router = await import(config.paths.routesFile);
   const SSRAppRouter: AppRouter = router.default;
 
-  // let appRouterRoot: null | (AppRouterRoot & SSRPrepassComponentType) = null;
   let apiRoutes: ApiRoute[] = [];
   let appRoutes: AppRoute[] = [];
 
   await ssrPrepass(<SSRAppRouter />, (element) => {
     const el = element as unknown as SSRPrepassComponentType;
-    if (isAppRouterRoot(el)) {
-      // appRouterRoot = el;
-    } else if (isAppRouterApiRoute(el)) {
+    if (isAppRouterApiRoute(el)) {
       apiRoutes.push({
-        method: el.props.method || "GET",
+        method: el.props.method,
         path: el.props.path,
         handler: el.props.handler,
       });
@@ -164,9 +134,11 @@ export default async function makeAppServer(
   // Register "app/view" routes
   appRoutes.forEach((route) => {
     server.register((fastify, _, done) => {
-      fastify.get(route.path, async (_, reply) => {
+      fastify.all(route.path, async (request, reply) => {
         // TODO: Asynchronously call the View's fetchData method?
-        return reply.streamReactView(route.view.name);
+        return reply.streamReactView(route.view.name, {
+          method: request.method,
+        });
       });
       done();
     });
