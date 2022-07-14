@@ -553,9 +553,9 @@
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
 
-"@ethicdevs/fastify-stream-react-views@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@ethicdevs/fastify-stream-react-views/-/fastify-stream-react-views-0.9.3.tgz#bef221192fd0c7df457dec562f6d4955ebd018c0"
+"@ethicdevs/fastify-stream-react-views@^0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@ethicdevs/fastify-stream-react-views/-/fastify-stream-react-views-0.9.4.tgz#4c96863d38352df4dd13705c7516179123d406a2"
   dependencies:
     "@babel/plugin-transform-modules-umd" "^7.18.0"
     babel-plugin-styled-components "^2.0.7"
