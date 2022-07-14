@@ -34,7 +34,6 @@ export interface AppServerA11YConfig {
 
 export interface AppServerFeatureFlags {
   withDevServer: boolean;
-  withResponseCompression: boolean;
   withStyledSSR: boolean;
 }
 

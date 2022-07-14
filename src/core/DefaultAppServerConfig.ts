@@ -1,3 +1,8 @@
+import {
+  DefaultInternalErrorView,
+  DefaultNotFoundErrorView,
+} from "@ethicdevs/fastify-stream-react-views";
+
 // lib
 import type { AppServerConfig } from "../types";
 
@@ -16,15 +21,14 @@ export const DEFAULT_APP_SERVER_CONFIG: AppServerConfig = {
     enabled: true,
   },
   featureFlags: {
-    withDevServer: false, // __DEV__ === true,
-    withResponseCompression: true, // __DEV__ !== true,
+    withDevServer: false,
     withStyledSSR: false,
   },
   specialComponents: {
     AppComponent: DefaultAppComponent,
     ErrorsBoundary: DefaultErrorsBoundary as never,
-    InternalServerErrorView: () => null,
-    NotFoundView: () => null,
+    InternalServerErrorView: DefaultInternalErrorView as never,
+    NotFoundView: DefaultNotFoundErrorView as never,
   },
   paths: {
     distFolder: UNSET_CONFIG_TAG,
