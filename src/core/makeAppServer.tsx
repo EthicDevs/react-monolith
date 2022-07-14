@@ -1,6 +1,8 @@
 // 1st-party
-import FastifyStreamReactViews from "@ethicdevs/fastify-stream-react-views";
-import { InternalViewKind } from "@ethicdevs/fastify-stream-react-views";
+import FastifyStreamReactViews, {
+  InternalViewKind,
+} from "@ethicdevs/fastify-stream-react-views";
+
 // 3rd-party
 import Fastify from "fastify";
 import React from "react";
@@ -36,6 +38,7 @@ export default async function makeAppServer(
   );
 
   const { logger, paths, specialComponents } = config;
+  console.log("config:", config);
 
   if (specialComponents == null) {
     throw new Error(
@@ -72,10 +75,11 @@ export default async function makeAppServer(
     appComponent: specialComponents.AppComponent,
     appName: config.appName,
     commonProps: config.commonProps,
-    titleSeparatorChar: config.titleSeparatorChar,
-    rootFolder: config.paths.rootFolder,
     distFolder: config.paths.distFolder,
+    externalDependencies: config.externalDependencies,
     islandsFolder: config.paths.islandsFolder,
+    rootFolder: config.paths.rootFolder,
+    titleSeparatorChar: config.titleSeparatorChar,
     viewsFolder: config.paths.viewsFolder,
     viewContext: {
       html: {
