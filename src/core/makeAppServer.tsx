@@ -32,13 +32,21 @@ export default async function makeAppServer(
   port: string | number,
   options: AppServerOptions = DEFAULT_APP_SERVER_CONFIG,
 ): Promise<AppServer> {
-  const config: AppServerConfig = deepMerge<AppServerConfig>(
+  const defaultConfig: AppServerConfig = deepMerge<AppServerConfig>(
     DEFAULT_APP_SERVER_CONFIG,
     options as never,
   );
 
+  // For cases where options should be passed as refs.
+  const config: AppServerConfig = {
+    ...defaultConfig,
+    specialComponents: {
+      ...defaultConfig.specialComponents,
+      ...options.specialComponents,
+    },
+  };
+
   const { logger, paths, specialComponents } = config;
-  console.log("config:", config);
 
   if (specialComponents == null) {
     throw new Error(
