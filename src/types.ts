@@ -80,6 +80,7 @@ export interface AppServerOptions {
   logger?: AppServerLoggerConfig;
   paths: AppServerPaths;
   specialComponents?: Partial<AppServerSpecialComponents>;
+  setupServerBeforeRoutes?: (server: AppServer) => Promise<void> | void;
   titleSeparatorChar?: string;
 }
 
@@ -93,6 +94,7 @@ export type AppServerConfig = Required<
     | "featureFlags"
     | "logger"
     | "specialComponents"
+    | "setupServerBeforeRoutes"
     | "titleSeparatorChar"
   > & {
     a11y: Required<AppServerA11YConfig>;
@@ -102,6 +104,7 @@ export type AppServerConfig = Required<
     featureFlags: Required<AppServerFeatureFlags>;
     logger: Required<AppServerLoggerConfig>;
     specialComponents: Required<AppServerSpecialComponents>;
+    setupServerBeforeRoutes: (server: AppServer) => Promise<void> | void;
     titleSeparatorChar: string;
   }
 >;

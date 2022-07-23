@@ -4,7 +4,7 @@ import {
 } from "@ethicdevs/fastify-stream-react-views";
 
 // lib
-import type { AppServerConfig } from "../types";
+import type { AppServer, AppServerConfig } from "../types";
 
 import { DefaultAppComponent, DefaultErrorsBoundary } from "../components";
 
@@ -59,5 +59,6 @@ export const DEFAULT_APP_SERVER_CONFIG: AppServerConfig = {
     InternalServerErrorView: DefaultInternalErrorView as never,
     NotFoundView: DefaultNotFoundErrorView as never,
   },
+  setupServerBeforeRoutes: (_: AppServer) => undefined,
   titleSeparatorChar: "∙",
 };

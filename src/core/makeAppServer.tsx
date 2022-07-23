@@ -98,6 +98,10 @@ export default async function makeAppServer(
     withStyledSSR: config.featureFlags.withStyledSSR,
   });
 
+  // Give the opportunity to customise server behaviour before routes are added
+  // useful i.e. to register ContentTypeParser's or stuff like that
+  await config.setupServerBeforeRoutes(server);
+
   server.setErrorHandler((error, _, reply) => {
     return reply.streamReactView(InternalViewKind.INTERNAL_ERROR_VIEW, {
       error,
